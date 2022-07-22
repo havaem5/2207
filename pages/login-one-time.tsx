@@ -21,7 +21,7 @@ const Login: NextPage = () => {
 		try {
 			e.preventDefault();
 			setRefreshReCaptcha((r) => !r);
-			const response = await axios.post("http://localhost:5000/user/verify-token", {
+			const response = await axios.post(`${process.env.API_URL}/user/verify-token`, {
 				email: input.email,
 				token: input.token,
 			});
@@ -33,14 +33,14 @@ const Login: NextPage = () => {
 
 	return (
 		<>
-			<div className="container flex-center min-h-screen">
-				<div className="max-w-md w-full rounded-md shadow-md border border-slate-200 mx-auto py-4">
-					<h1 className="flex-center flex-col font-bold text-2xl uppercase">Login One Time</h1>
-					<form className="p-4 flex-center flex-col gap-4" onSubmit={handleSubmit}>
-						<div className="flex flex-col gap-1 w-full">
-							<label className="text-sm text-gray-600 font-medium">Email</label>
+			<div className="container min-h-screen flex-center">
+				<div className="w-full max-w-md py-4 mx-auto border rounded-md shadow-md border-slate-200">
+					<h1 className="flex-col text-2xl font-bold uppercase flex-center">Login One Time</h1>
+					<form className="flex-col gap-4 p-4 flex-center" onSubmit={handleSubmit}>
+						<div className="flex flex-col w-full gap-1">
+							<label className="text-sm font-medium text-gray-600">Email</label>
 							<input
-								className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded-md border-gray-200 outline-none"
+								className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border border-gray-200 rounded-md outline-none"
 								type="email"
 								placeholder="Email"
 								name="email"
@@ -48,10 +48,10 @@ const Login: NextPage = () => {
 								onChange={handleChangeValue}
 							/>
 						</div>
-						<div className="flex flex-col gap-1 w-full">
-							<label className="text-sm text-gray-600 font-medium">Token</label>
+						<div className="flex flex-col w-full gap-1">
+							<label className="text-sm font-medium text-gray-600">Token</label>
 							<input
-								className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded-md border-gray-200 outline-none"
+								className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border border-gray-200 rounded-md outline-none"
 								type="text"
 								placeholder="Token"
 								name="token"
@@ -60,15 +60,15 @@ const Login: NextPage = () => {
 							/>
 						</div>
 						<GoogleReCaptcha onVerify={onVerify} refreshReCaptcha={refreshReCaptcha} />
-						<div className="flex flex-col gap-2 w-full">
+						<div className="flex flex-col w-full gap-2">
 							<button
-								className="w-full px-3 py-2 text-sm leading-tight text-white bg-slate-600 hover:bg-slate-500 transition-all rounded-md border border-slate-200 hover:border-slate-300 font-semibold uppercase"
+								className="w-full px-3 py-2 text-sm font-semibold leading-tight text-white uppercase transition-all border rounded-md bg-slate-600 hover:bg-slate-500 border-slate-200 hover:border-slate-300"
 								type="submit"
 							>
 								Login
 							</button>
 							<Link href="/">
-								<a className="w-full px-3 py-2 text-sm leading-tight text-white bg-red-400 hover:bg-red-300 transition-all rounded-md border border-slate-200 hover:border-slate-300 font-semibold uppercase text-center">
+								<a className="w-full px-3 py-2 text-sm font-semibold leading-tight text-center text-white uppercase transition-all bg-red-400 border rounded-md hover:bg-red-300 border-slate-200 hover:border-slate-300">
 									Back to Home
 								</a>
 							</Link>

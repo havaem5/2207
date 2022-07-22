@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<Head>
 				<title>Next.js App</title>
 			</Head>
-			<GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_PUBLIC || ""}>
+			<GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_PUBLIC as string}>
 				<Component {...pageProps} />
 			</GoogleReCaptchaProvider>
 		</>
